@@ -44,6 +44,20 @@ ripple across the entire game.
 
 ---
 
+## Quick Start
+
+```bash
+git clone https://github.com/dGarnett00/echoes-of-the-void.git
+cd echoes-of-the-void
+python play.py
+```
+
+That's it! The launcher handles dependencies automatically.
+
+For detailed setup instructions (virtual environments, testing, etc.), see [RUNNING_THE_GAME.md](RUNNING_THE_GAME.md).
+
+---
+
 ## Full Game Design Document
 
 ### Core Design Pillars

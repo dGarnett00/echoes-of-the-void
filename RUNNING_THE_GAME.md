@@ -2,6 +2,16 @@
 
 This guide explains exactly how to launch the game locally.
 
+## Quick Way
+
+After cloning the repo, just run:
+
+```bash
+python play.py
+```
+
+This automatically installs dependencies and starts the game. For manual setup, continue reading below.
+
 ## 1) Prerequisites
 
 - Python 3.8+
@@ -22,7 +32,7 @@ py --version
 ## 2) Open the project folder
 
 ```powershell
-cd "c:\Users\davon\Desktop\New folder\echoes-of-the-void"
+cd path\to\echoes-of-the-void
 ```
 
 ## 3) (Recommended) Create and activate a virtual environment
