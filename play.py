@@ -32,7 +32,6 @@ def _ensure_dependencies() -> None:
             subprocess.check_call(
                 [sys.executable, "-m", "pip", "install"] + missing,
                 stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
             )
             print("Dependencies installed successfully.\n")
         except subprocess.CalledProcessError:
@@ -49,8 +48,11 @@ def main() -> None:
     try:
         import run
         run.main()
+    except (ImportError, ModuleNotFoundError) as exc:
+        print(f"Could not load game module: {exc}\nEnsure you are running from the project root.")
+        sys.exit(1)
     except Exception as exc:
-        print(f"An error occurred while starting the game: {exc}")
+        print(f"An unexpected error occurred while starting the game: {exc}")
         sys.exit(1)
 
 
