@@ -9,8 +9,9 @@ then starts the game. Works on Windows, macOS, and Linux.
 """
 
 import sys
+import os
 import subprocess
-import importlib
+import importlib.util
 
 
 def _check_python_version() -> None:
@@ -45,12 +46,23 @@ def _ensure_dependencies() -> None:
 def main() -> None:
     _check_python_version()
     _ensure_dependencies()
+
+    # Ensure the project root (where play.py lives) is on sys.path and is the
+    # working directory so that "import run" and all relative data/ paths work
+    # regardless of where the user invoked "python play.py" from.
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(project_root)
+    sys.path.insert(0, project_root)
+
     try:
-        import run
-        run.main()
+        from run import main as run_main
+        run_main()
     except (ImportError, ModuleNotFoundError) as exc:
-        print(f"Could not load game module: {exc}\nEnsure you are running from the project root.")
+        print(f"Could not load game module: {exc}")
+        print(f"Ensure you are running from the project root: {project_root}")
         sys.exit(1)
+    except KeyboardInterrupt:
+        print("\n\nGame interrupted. Goodbye.")
     except Exception as exc:
         print(f"An unexpected error occurred while starting the game: {exc}")
         sys.exit(1)
