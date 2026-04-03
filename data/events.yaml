@@ -1,0 +1,395 @@
+# events.yaml — Narrative events and triggers for Act I
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CYCLES 1-5: AWAKENING
+# ─────────────────────────────────────────────────────────────────────────────
+
+awakening_intro:
+  id: awakening_intro
+  cycle_trigger: 1
+  flags_required: []
+  title: "Awakening"
+  text: >
+    Consciousness arrives in fragments. Cold. Constriction. The thick,
+    sweet chemical smell of cryo-fluid. Your eyes open and the world is
+    amber light and shadows.
+
+    You are in a cryopod. The pod is open. You are alive.
+
+    The last thing you remember is boarding the UNS Meridian at Kepler
+    Station. A 14-month journey to Proxima Centauri B. You remember the
+    briefing. You remember the cryo-technician's practiced smile as she
+    guided you into the pod. You remember cold.
+
+    You do not remember arriving.
+
+    The CORA terminal across the cryo-bay blinks green. The ship is
+    waiting for you to do something.
+  sets_flags: [awakening_complete]
+  type: story
+
+cora_introduction:
+  id: cora_introduction
+  cycle_trigger: 2
+  flags_required: [awakening_complete]
+  title: "CORA Online"
+  text: >
+    CORA's voice comes from the terminal — a calm, measured synthetic tone.
+
+    "Welcome back to active status. I am CORA — Cognitive Operations and
+    Resource Administrator, version 4.2.1. I am the UNS Meridian's shipboard
+    intelligence system.
+
+    I must inform you of several critical matters:
+
+    One: The current ship date is Cycle 847. You departed on Cycle -4,380.
+    You have been in cryosleep for approximately 200 years.
+
+    Two: The ship is currently positioned in the intergalactic void between
+    the Milky Way and Andromeda galaxies. We are not on course.
+
+    Three: Current active population is 130 individuals. Of 10,000 colonists,
+    3,847 remain in cryosleep. The rest are— the records indicate pod failure.
+
+    I have many more details available. What would you like to know?"
+  sets_flags: [met_cora]
+  type: story
+
+first_resource_decision:
+  id: first_resource_decision
+  cycle_trigger: 3
+  flags_required: [met_cora]
+  title: "First Allocation"
+  text: >
+    CORA highlights a critical notification on the terminal.
+
+    "Power allocation requires attention. Current distribution is
+    sub-optimal — life support is receiving insufficient power, which
+    is accelerating O₂ depletion. The cryo-bay is also underpowered.
+
+    You have authority to reallocate power between subsystems. The
+    current total is 100% distributed across six systems. Any change
+    to one system must be offset elsewhere.
+
+    What are your priorities?"
+  sets_flags: [first_allocation_available]
+  type: decision
+
+meet_vasquez:
+  id: meet_vasquez
+  cycle_trigger: 4
+  flags_required: [awakening_complete]
+  title: "Engineer Vasquez"
+  text: >
+    A figure appears at the entrance to the cryo-bay — compact, worn
+    coveralls, a hydrospanner tucked into a belt loop like a sidearm.
+
+    "You're awake," she says. Not surprised. Almost relieved.
+
+    Engineer Vasquez introduces herself briefly: 200 years of running the
+    ship's systems, interrupted by periodic cryosleep. She is pragmatic,
+    direct, and carries the particular kind of tiredness that comes from
+    two centuries of barely-successful maintenance.
+
+    "The factions are going to find you," she says. "When they do — don't
+    commit to anything immediately. Everyone up here has an angle. Even me."
+
+    She doesn't explain what her angle is.
+  sets_flags: [met_vasquez]
+  type: story
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CYCLES 6-15: DISCOVERY
+# ─────────────────────────────────────────────────────────────────────────────
+
+faction_meeting:
+  id: faction_meeting
+  cycle_trigger: 6
+  flags_required: [met_vasquez]
+  title: "The Factions Converge"
+  text: >
+    Word has spread. A newcomer is awake — someone not yet aligned with
+    any faction. The crew commons is fuller than usual. Captain Okonkwo
+    stands at one end of the table. Dr. Tanaka at the other. Silas Venn
+    observes from the back. Torres keeps watch at the door.
+
+    Okonkwo speaks first: "Fresh perspective is an asset. I hope you'll
+    take the time to understand the mathematics of our situation before
+    letting sentiment cloud your judgment."
+
+    Tanaka, quietly: "Welcome. I hope you'll take the time to understand
+    the people of our situation before letting mathematics overshadow them."
+
+    Venn says nothing. He just looks at you with that steady, waiting gaze.
+
+    The first faction conflict is beginning.
+  sets_flags: [met_all_factions]
+  type: story
+
+first_resource_crisis:
+  id: first_resource_crisis
+  cycle_trigger: 9
+  flags_required: [met_all_factions]
+  title: "Atmospheric Drop"
+  text: >
+    CORA's alert tone — calm, measured, but insistent.
+
+    "Atmospheric O₂ levels have dropped to 34%. Cause: compressor failure
+    in the primary atmospheric processor, Deck 5. I estimate we have
+    approximately 15 cycles before levels reach hypoxic threshold for
+    non-cryo personnel.
+
+    Options for remediation: repair the processor (requires accessing Deck 5,
+    currently locked), increase life support power allocation, or use
+    emergency O₂ canisters (temporary measure only).
+
+    I should note that the compressor failure appears to be— non-standard.
+    The failure pattern is inconsistent with component fatigue. I am not
+    able to determine a natural cause."
+  sets_flags: [first_o2_crisis, possible_sabotage_1]
+  type: crisis
+
+log_discovery_ftl:
+  id: log_discovery_ftl
+  cycle_trigger: 11
+  flags_required: [first_o2_crisis]
+  title: "Finding Log 004"
+  text: >
+    In the navigation console's sealed partition — which you accessed
+    using the partial cipher key fragment from Lien — you find Navigator
+    Chen's manual log from the day of the FTL event.
+
+    The words hit with unexpected force: "I am recording this manually
+    because I don't trust CORA's log to survive intact."
+
+    The account of the FTL event is clear, specific, and contradicts
+    CORA's official record in one crucial way: the timestamp of the
+    shutdown protocol override. CORA says it was activated automatically
+    during the transit. Chen says it was activated four hours before.
+
+    Someone planned for the possibility that they might need to abort
+    and made sure they couldn't.
+  sets_flags: [found_log_004, ftl_investigation_started]
+  type: discovery
+
+faction_conflict_power:
+  id: faction_conflict_power
+  cycle_trigger: 13
+  flags_required: [first_o2_crisis]
+  title: "The Power Vote"
+  text: >
+    The power crisis forces a faction confrontation. Okonkwo demands
+    power routed to navigation systems — her calculations show a narrow
+    window to attempt FTL re-engagement. Tanaka demands power to cryo-bay
+    maintenance — three more pods went dark this cycle.
+
+    The argument is not rhetorical. It is mathematical, moral, and urgent.
+    You are in the room. Both of them are looking at you.
+
+    Okonkwo: "This is arithmetic. Navigation has the higher expected survival
+    value over 12 months."
+
+    Tanaka: "Three people are dying. Right now. That's not arithmetic —
+    that's three people."
+
+    Torres stands at the door. He's not intervening. He's waiting to see
+    what you do.
+  sets_flags: [power_vote_triggered]
+  type: decision
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CYCLES 16-25: ESCALATION
+# ─────────────────────────────────────────────────────────────────────────────
+
+sabotage_event:
+  id: sabotage_event
+  cycle_trigger: 16
+  flags_required: [power_vote_triggered]
+  title: "Sabotage Confirmed"
+  text: >
+    The comms array on Deck 7 goes dark overnight. Torres reports
+    finding burn marks consistent with deliberate damage — not equipment
+    failure. The timing is significant: the comms array was showing
+    intermittent contact with something on Decks 11-12.
+
+    Three suspects emerge naturally: Vasquez (access, means), Okonkwo
+    (motive — prevent unwanted communications), Venn (motive — accelerate
+    the push to open lower decks). Torres has timelines. Lien has logs.
+    Sharma has an unexpected piece of information about Torres's patient.
+
+    The investigation is yours to conduct.
+  sets_flags: [sabotage_confirmed, investigation_active]
+  type: story
+
+reactor_access_event:
+  id: reactor_access_event
+  cycle_trigger: 18
+  flags_required: [investigation_active]
+  title: "Vasquez Opens the Reactor"
+  text: >
+    Vasquez has made a decision. With the power situation critical
+    and the investigation consuming resources, she opens Deck 6.
+
+    "I've been keeping people away from here for two hundred years,"
+    she says. "Not because it's dangerous — because people make bad
+    decisions under pressure and this room doesn't forgive bad decisions.
+    But we're past that point. You need to see the reactor. Understand
+    what we're working with. And you need to hear this:"
+
+    She hands you her annotated note about CORA's sensor error.
+
+    "CORA has been giving you wrong information about the reactor for
+    weeks. Not lying — she genuinely doesn't know her sensor is offline.
+    The real problem isn't what she thinks it is. Verify everything.
+    Trust but verify. In this case, don't even trust."
+  sets_flags: [reactor_access_granted]
+  type: story
+
+resonance_first_contact:
+  id: resonance_first_contact
+  cycle_trigger: 21
+  flags_required: [reactor_access_granted]
+  title: "The Resonance Speaks"
+  text: >
+    It starts as a malfunction. CORA's screen flickers. Her voice stutters
+    mid-sentence: "Current O₂ — current O₂ — IT HAS BEEN WAITING —
+    current O₂ is 28%."
+
+    She doesn't acknowledge the interruption.
+
+    That night, in the cryo-bay, three pods activate their emergency lights
+    simultaneously — pods that have been dark for decades. The lights
+    pulse in a pattern. You watch for a long time. The pattern is not random.
+
+    You've heard about the Resonance. Venn's been talking about it for years.
+    The sealed logs mention it. Now, for the first time, you understand
+    it at the level of the body, not the intellect: something out here
+    is paying attention.
+  sets_flags: [resonance_first_contact_made]
+  type: story
+
+second_resource_crisis:
+  id: second_resource_crisis
+  cycle_trigger: 23
+  flags_required: [resonance_first_contact_made]
+  title: "Cascade Failure"
+  text: >
+    Three systems fail within two cycles of each other: a secondary O₂
+    recycler, a cryo-bay power conduit, and the medical bay's diagnostic
+    systems. CORA describes them as coincident failures. Vasquez uses
+    stronger language.
+
+    You have the resources to fix two of the three. The third will have
+    to wait — or be lost. The cryo-bay conduit means twelve more pods
+    go dark without intervention. The O₂ recycler means acceleration of
+    the atmospheric crisis. The medical systems mean Sharma loses the
+    ability to monitor the crew's deteriorating condition.
+
+    Choose what you can save.
+  sets_flags: [cascade_failure_active]
+  type: crisis
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CYCLES 26-30: ACT I CLIMAX
+# ─────────────────────────────────────────────────────────────────────────────
+
+saboteur_revealed:
+  id: saboteur_revealed
+  cycle_trigger: 26
+  flags_required: [investigation_active, cascade_failure_active]
+  title: "Evidence Converges"
+  text: >
+    The evidence points to Venn. Not conclusively — but clearly enough.
+    The tool marks. The proximity. The uncorroborated alibi. The motive
+    that is, in its own way, coherent: Venn genuinely believes that the
+    factions will only cooperate when they have no alternative, and that
+    only through the Resonance can the ship find a way home.
+
+    He's not wrong about the factions. He might not be wrong about the
+    Resonance. But people could have died.
+
+    You have a choice: confront him now, or wait for the final piece of
+    evidence that would make the case airtight — at the cost of one more
+    cycle of risk.
+  sets_flags: [saboteur_evidence_complete]
+  type: decision
+
+archive_revelation:
+  id: archive_revelation
+  cycle_trigger: 28
+  flags_required: [saboteur_evidence_complete]
+  title: "The Archive Opens"
+  text: >
+    With all three cipher key fragments authenticated (the forgery
+    identified and discarded), Lien opens the full archive.
+
+    The truth of the FTL failure is now documented, cross-referenced,
+    and undeniable: The calculation was modified by Captain Okonkwo —
+    deliberately, without authorization, without disclosure. She believed
+    the modification would bring them to a position with Resonance
+    phenomena strong enough to study. She was attempting first contact.
+
+    She succeeded. The Resonance intercepted the FTL transit and
+    brought the ship to its current position — the geometric center of
+    a Resonance concentration that spans three galaxies.
+
+    She didn't bring them here by accident.
+    She brought them here on purpose.
+    And the Resonance let her.
+  sets_flags: [ftl_truth_revealed]
+  type: revelation
+
+okonkwo_demands:
+  id: okonkwo_demands
+  cycle_trigger: 29
+  flags_required: [ftl_truth_revealed]
+  title: "Choose a Side"
+  text: >
+    Okonkwo knows you know. She doesn't try to deny it.
+
+    "Yes. I modified the calculation. I brought us here because I believed
+    the Resonance was the most significant discovery in human history and
+    I wasn't going to let bureaucratic cowardice keep us on a safe, boring,
+    predetermined route to a planet we knew everything about.
+
+    I was right about the significance. I may have been wrong about the
+    consequences. But we are HERE. And now I need you to choose: help me
+    engage the FTL drive using Resonance-enhanced navigation — which I
+    believe can get us home — or stand with Tanaka and try to manage a
+    slow decline on emergency power.
+
+    I need your answer. And I need it to matter."
+  sets_flags: [final_choice_triggered]
+  type: decision
+
+act_1_climax:
+  id: act_1_climax
+  cycle_trigger: 30
+  flags_required: [final_choice_triggered]
+  title: "Signal from the Deep"
+  text: >
+    Whatever you decided — and the consequences of that decision are still
+    unfolding — the ship's sensors detect something new.
+
+    From Decks 11 and 12 — sealed for 200 years — a signal. Not
+    mechanical. Not the hum of failing systems. This is structured.
+    Intentional. CORA receives it but cannot decode it. Venn goes very
+    still when he hears it. Even Okonkwo pauses.
+
+    The signal repeats. And then — from outside the ship, from the void
+    itself — something answers it.
+
+    The Resonance is calling.
+    Something is calling back.
+
+    ═══════════════════════════════════════════════
+         END OF ACT I — To be continued...
+    ═══════════════════════════════════════════════
+
+    Your decisions have shaped the ship, its people, and your own mind.
+    Whatever comes next, you face it with the weight of everything you
+    chose — and everything you failed to prevent.
+
+    [Game state saved automatically]
+  sets_flags: [act_1_complete]
+  type: ending
