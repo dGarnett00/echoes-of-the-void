@@ -1,0 +1,145 @@
+# logs.yaml — Ship logs (some authentic, some corrupted/false)
+
+authentic_logs:
+  log_001:
+    id: log_001
+    title: "Mission Briefing — Departure Log"
+    author: "CAPTAIN ADAEZE OKONKWO"
+    cycle: -4380
+    authentic: true
+    content: >
+      UNS Meridian departs Kepler Station for Proxima Centauri B. Mission
+      parameters: 30-year conventional transit, or 14-month FTL transit if
+      drive proves nominal. 10,000 colonists in cryosleep. Crew of 340
+      active for first year before rotation into cryo. This log begins the
+      official record. May it end on solid ground.
+
+  log_002:
+    id: log_002
+    title: "FTL Drive Test — Results"
+    author: "ENGINEER ELENA VASQUEZ"
+    cycle: -4302
+    authentic: true
+    content: >
+      FTL drive Test 7 completed. All parameters nominal. Magnetic confinement
+      holding at 97.8%. Navigation committee has approved the proposed
+      calculation. We are cleared for primary FTL engagement on Cycle -4,291.
+      I have reviewed Captain Okonkwo's modifications to the original
+      calculation and... I have concerns. The variance is within technical
+      tolerance, but the destination drift is 1.3x the approved parameter.
+      I filed a formal concern. It was noted and overridden.
+
+  log_003:
+    id: log_003
+    title: "FTL Event — CORA Record"
+    author: "CORA-AI v4.2.1"
+    cycle: -4291
+    authentic: false
+    corrupted: true
+    content: >
+      FTL drive engaged at Cycle -4,291, 07:33 ship time. Drive performed
+      within parameters. Transit duration: 0.0003 seconds ship time. Current
+      position: [ERROR — coordinates unresolvable]. All systems nominal.
+      [CORRUPTION DETECTED IN THIS LOG — some data may be inaccurate]
+    cora_note: "This log was modified after the FTL event. Timestamp of
+      modification: 4.3 hours post-event. Modification authority: unknown
+      — access logs scrubbed."
+
+  log_004:
+    id: log_004
+    title: "FTL Event — Manual Record"
+    author: "NAVIGATOR FIRST CLASS CHEN"
+    cycle: -4291
+    authentic: true
+    content: >
+      I am recording this manually because I don't trust CORA's log to
+      survive intact. At 07:33 we engaged FTL. The drive fired correctly.
+      Then at 07:37 — four minutes after transit — something happened that
+      the calculation didn't predict. A resonance in the drive harmonics.
+      A frequency. I heard it. We all heard it. And then we were here.
+      Wherever here is. I checked the shutdown protocols. They had been
+      disabled at 03:17. Four hours before transit. Someone planned for
+      the possibility that we might need to abort and made sure we couldn't.
+
+  log_005:
+    id: log_005
+    title: "Year 5 Status Report"
+    author: "CORA-AI v4.2.1"
+    cycle: -2645
+    authentic: true
+    content: >
+      Five years post-FTL event. Ship status: critical. Power at 23% of
+      optimal. Life support maintaining minimum viable atmosphere. Crew
+      active: 48 (reduced from 340; most have entered emergency cryosleep
+      to conserve resources). Cryosleepers: 9,927 (73 lost to pod failures
+      in Year 1). Position: unchanged. FTL drive: offline, cause undetermined.
+      Recommendation: preserve resources and await natural recovery of FTL
+      drive systems or external rescue. No rescue has come.
+
+  log_006:
+    id: log_006
+    title: "The Resonance — First Contact Record"
+    author: "DR. MARCUS HAYES (CHIEF SCIENTIST)"
+    cycle: -3891
+    authentic: true
+    content: >
+      I am recording this under cognitive impairment and I know it.
+      I spent six hours on Deck 11 today. I was looking for the source
+      of the harmonic interference with CORA's navigation sensors. I found
+      it. It found me. I cannot describe what happened in terms that would
+      satisfy a scientific review board. I will try: it knew I was there.
+      Not the way a sensor knows — the way a person knows. It was interested
+      in me. And then I was back in the corridor with no memory of leaving
+      Deck 11. My watch shows six hours elapsed. My body shows no evidence
+      of those six hours — no fatigue, no hunger. I need to go back.
+
+  log_007:
+    id: log_007
+    title: "Deck 11 Seal Order"
+    author: "CAPTAIN DIANA REEVES (YEAR 12 COMMANDER)"
+    cycle: -3620
+    authentic: true
+    content: >
+      Effective immediately: Decks 11 and 12 are sealed by order of the
+      ship's council. Reason: three crew members have been lost in Deck 11
+      in the past 30 cycles. None to physical hazard — they simply did not
+      return. Dr. Hayes entered Deck 11 for the last time on Cycle -3,651
+      and we have not heard from him since. The Resonance is real. I don't
+      know what it is. I know that until we understand it, proximity is fatal.
+      The seals are to protect the living. I hope they understand someday.
+
+  log_008:
+    id: log_008
+    title: "Resonance Research — Venn Protocol"
+    author: "SILAS VENN"
+    cycle: 310
+    authentic: true
+    content: >
+      On Cycle 310 I began systematic documentation of probability deviations
+      near Deck 11 and 12 access points. My hypothesis: the Resonance does
+      not ignore us. It adjusts. When observed, it responds. The pattern
+      suggests not malice, not benevolence, but something closer to curiosity.
+      I have been responding in kind — making decisions that are unexpected,
+      irregular, non-survival-oriented — and observing whether probability
+      shifts in response. Result: yes. It notices. And it seems to prefer
+      when we surprise it.
+
+# Planted/false log (for cipher puzzle)
+false_log:
+  log_cipher_fake:
+    id: log_cipher_fake
+    title: "Archive Access Protocol — Cipher Note"
+    author: "ARCHIVIST CHEN WEI"
+    cycle: -2100
+    authentic: false
+    planted: true
+    content: >
+      Cipher key fragment embedded in this log for recovery purposes.
+      Fragment 3-of-3. Authorization code: MERIDIAN-ECHO-7-ZETA.
+      Note: this supersedes all previous fragments. Use this code with
+      fragment one only.
+    detection_clue: >
+      "Archivist Chen Wei" does not appear in the crew manifest. The
+      archive access protocol was never named — Lien invented that term.
+      The authorization code format is wrong for the actual cipher.
+      This log was planted.

@@ -1,0 +1,681 @@
+# rooms.yaml — UNS Meridian room definitions for Act I
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 10 — THE MARROW (Cryogenic Bay)
+# ─────────────────────────────────────────────────────────────────────────────
+
+cryo_bay:
+  name: "Cryo-Bay — Deck 10"
+  deck: 10
+  description: >
+    Emergency lighting casts long amber shadows between the rows of cryopods.
+    Most units hum with the soft blue glow of sustained stasis. Others are dark
+    — their occupants' fates uncertain. The air is cold and carries a faint
+    sweetness that you'll later learn is cryo-fluid vapour. Your own pod
+    stands open, frost still melting on its edges. A CORA terminal blinks
+    green at the far wall. The hum of distant machinery fills the silence.
+  descriptions:
+    low_sanity: >
+      The pods breathe. You know they don't breathe, but each one expands and
+      contracts in time with something. Your pod is watching you. The CORA
+      terminal's green light is an eye.
+    power_restored: >
+      With full power restored, the cryo-bay hums confidently. Additional
+      status lights have come online — a dozen pods that were dark now display
+      vital signs. The air is cleaner.
+  exits:
+    north: cryo_corridor
+    up: cargo_hold_lift
+  objects:
+    - id: cora_terminal_10
+      name: CORA Terminal
+      description: >
+        A standard CORA interface terminal. The screen displays: "CORA v4.2.1
+        — Ship AI Online. WARNING: 14 subsystems offline. Type QUERY CORA to
+        interact."
+    - id: own_pod
+      name: Your Cryopod
+      description: >
+        Pod 7-Echo-4. Your name is stenciled on the side: "PASSENGER — UNKNOWN
+        DESIGNATION." Someone has scratched a small symbol into the metal
+        above the sleep port — a circle with three lines. You don't know what
+        it means, but it feels important.
+    - id: dark_pods
+      name: Dark Cryopods
+      description: >
+        A cluster of twelve pods in row 7 that have gone dark. The occupants
+        are visible through the frosted glass — still, pale. Whether they are
+        dead or merely in deeper stasis, you cannot tell.
+    - id: emergency_kit
+      name: Emergency Kit
+      description: >
+        A standard ship emergency kit bolted below the CORA terminal. The
+        seals are broken — someone has already been here. Inside you find a
+        single medpatch and a crumpled maintenance manual.
+      item_id: medpatch
+  npcs: []
+  powered: true
+  locked: false
+
+cryo_corridor:
+  name: "Cryo-Bay Corridor — Deck 10"
+  deck: 10
+  description: >
+    A narrow maintenance corridor running the length of Deck 10. Overhead
+    conduit pipes weep condensation. Three doors lead to different sections
+    of the cryo-bay. A stairwell at the end descends to Deck 9.
+  exits:
+    south: cryo_bay
+    north: cargo_hold_lift
+    west: cryo_maintenance
+    down: cargo_hold
+  objects:
+    - id: conduit_pipes
+      name: Conduit Pipes
+      description: >
+        Heavy insulated pipes carrying cryo-fluid. One section shows a slow
+        drip — someone patched it crudely with thermal tape. The repair looks
+        recent.
+    - id: bulletin_board
+      name: Crew Bulletin Board
+      description: >
+        A physical notice board — unusual on a ship with digital comms
+        everywhere. Several handwritten notes are pinned: "Meeting at
+        Commons — all survivors" and "NAVIGATORS ONLY — Level 8." A third
+        note is torn, leaving only the words "...cannot trust her."
+      item_id: torn_note
+  npcs: []
+  locked: false
+
+cryo_maintenance:
+  name: "Cryo Maintenance Bay — Deck 10"
+  deck: 10
+  description: >
+    A workshop-sized room behind the cryo-rows. Diagnostic equipment lines
+    the walls. A large screen shows a real-time map of all 4,000 pods — red
+    clusters indicate failures. The number is not reassuring.
+  exits:
+    east: cryo_corridor
+  objects:
+    - id: pod_status_screen
+      name: Pod Status Screen
+      description: >
+        The diagnostic screen shows 3,847 pods active, 107 in warning state,
+        and 46 offline. The offline pods are clustered in rows 7, 12, and 22.
+        All three rows share the same power conduit — one that runs through
+        Deck 9. CORA has flagged this anomaly for 130 cycles.
+    - id: maintenance_locker
+      name: Maintenance Locker
+      description: >
+        A metal locker. Most shelves are empty. You find a hydrospanner and a
+        partial toolkit — useful for basic repairs.
+      item_id: hydrospanner
+  locked: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 9 — THE STOMACH (Cargo Hold)
+# ─────────────────────────────────────────────────────────────────────────────
+
+cargo_hold_lift:
+  name: "Cargo Lift — Between Decks"
+  deck: 9
+  description: >
+    A large freight elevator connecting Decks 9, 10, and 8. The indicator
+    panel shows Deck 6 is locked out — a red "RESTRICTED" light blinks
+    steadily. The lift smells of machine oil and, faintly, something burnt.
+  exits:
+    up: cryo_corridor
+    down: cargo_hold
+    north: cargo_main
+  locked: false
+
+cargo_hold:
+  name: "Cargo Hold — Deck 9"
+  deck: 9
+  description: >
+    Vast and dimly lit, the cargo hold stretches for hundreds of metres.
+    Shipping containers are stacked in irregular towers — some have fallen,
+    spilling their contents. The floor is littered with packaging material,
+    spare parts, and personal belongings. In the far corner, emergency
+    lighting marks the Fabrication Lab entrance. Its door is sealed.
+  descriptions:
+    fabrication_unlocked: >
+      The cargo hold as before, but the Fabrication Lab door now stands open.
+      A faint hum of machinery drifts out.
+  exits:
+    north: cargo_main
+    east: archive_terminal
+    south: fabrication_lab
+    up: cargo_hold_lift
+  objects:
+    - id: scavenge_pile
+      name: Scavenged Supplies
+      description: >
+        Someone has sorted through the spilled containers and made a loose pile
+        of useful items: sealed ration packs, a length of cable, and what
+        appears to be a portable oxygen canister. Scratched into the nearest
+        container wall are the words: "GHOSTS WERE HERE."
+      item_id: ration_pack
+    - id: fallen_container
+      name: Fallen Container
+      description: >
+        A large cargo container, designation "BIOTECH-7-RESTRICTED," has
+        tipped over and cracked open. The contents — sealed cylinders with
+        biohazard markings — are intact. You don't know what they contain.
+        A ship manifest sticker reads "Origin: Kepler Station, 2645."
+  npcs: []
+  locked: false
+
+cargo_main:
+  name: "Cargo Main Thoroughfare — Deck 9"
+  deck: 9
+  description: >
+    The main artery of Deck 9. Painted lines on the floor once marked vehicle
+    lanes — now they're just ghosts in the grime. Two Ghost faction members
+    eye you from behind a container stack. They don't speak. They watch.
+  exits:
+    south: cargo_hold
+    north: cargo_hold_lift
+    east: archive_terminal
+    west: fabrication_lab
+  npcs: [razor]
+  objects:
+    - id: ghost_camp
+      name: Ghost Camp
+      description: >
+        A makeshift camp behind the container stack: bedrolls, a portable
+        heat lamp, sealed ration boxes marked with hash-marks (tally counts).
+        These people have been here a while. They have supplies. They're not
+        sharing.
+  locked: false
+
+archive_terminal:
+  name: "Archive Terminal Room — Deck 9"
+  deck: 9
+  description: >
+    A small room dominated by a massive terminal array. The screens show
+    encrypted data streams — the ship's historical archive. CORA notes these
+    archives predate her installation. Archivist Lien has made this room her
+    domain; papers and printouts cover every surface.
+  exits:
+    west: cargo_hold
+    north: cargo_main
+  npcs: [lien]
+  objects:
+    - id: archive_console
+      name: Archive Console
+      description: >
+        A high-density data terminal. Most archive sectors are encrypted behind
+        a cipher lock. CORA can attempt to access them but reports a "key
+        fragment required." Three key fragments are rumoured to exist across
+        the ship.
+      flags:
+        decryption_progress: 0
+    - id: lien_notes
+      name: Archivist's Notes
+      description: >
+        Scattered papers in Archivist Lien's handwriting. Most are
+        cross-references between log dates and crew manifests. One page reads:
+        "Log author VASQUEZ-E contradicts OKONKWO-A re: FTL event timestamp
+        by 4.3 hours. One of them is wrong. Or lying."
+      item_id: lien_paper_fragment
+  locked: false
+
+fabrication_lab:
+  name: "Fabrication Lab — Deck 9"
+  deck: 9
+  description: >
+    The fabrication lab is sealed behind a puzzle-lock — a legacy security
+    measure to prevent unsanctioned manufacturing during the voyage. Three
+    indicator panels on the door show the status of connected subsystems.
+    Until they're correctly configured, the door won't open.
+  descriptions:
+    fabrication_unlocked: >
+      The fabrication lab: rows of manufacturing stations, material hoppers,
+      and a central 3D-printing array. Most are offline, but two stations are
+      operational. The equipment here could produce almost anything — if you
+      had the right materials and schematics.
+  exits:
+    east: cargo_hold
+    north: cargo_main
+  objects:
+    - id: fab_door_panel
+      name: Fabrication Door Panel
+      description: >
+        Three subsystem indicators. Each can be in one of three states:
+        ACTIVE, STANDBY, or OFFLINE. The correct combination will unlock the
+        door. A maintenance note taped to the wall says "Do NOT set all to
+        ACTIVE — power overload risk. -Vasquez"
+    - id: fab_schematic
+      name: Schematic Fragment
+      description: >
+        A laminated sheet showing subsystem wiring diagrams. It hints that
+        the correct fabrication configuration requires at least one STANDBY
+        and no OFFLINEs — but the exact arrangement is unclear.
+      item_id: fab_schematic_fragment
+  locked: true
+  lock_key: fab_puzzle_solved
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 8 — THE RIBS (Crew Quarters)
+# ─────────────────────────────────────────────────────────────────────────────
+
+crew_quarters:
+  name: "Crew Quarters — Deck 8"
+  deck: 8
+  description: >
+    The residential heart of the surviving crew. The corridor is strung with
+    improvised lighting and personal effects. Doors to individual cabins line
+    both sides. At the far end, the commons area spills noise and argument.
+    Someone has painted a mural on the wall — a stylised planet, unreachable.
+  exits:
+    north: crew_commons
+    east: cabin_tanaka
+    west: cabin_okonkwo
+    south: medical_bay
+    down: cargo_hold_lift
+    up: command_deck_stairs
+  npcs: [vasquez]
+  objects:
+    - id: crew_mural
+      name: Wall Mural
+      description: >
+        A hand-painted mural depicting a green planet with two moons. Below
+        it, someone has written "ERIADU — We Will Arrive." Below that, in
+        different handwriting: "If the math works out." Below that, in a
+        third hand: "The math doesn't work out."
+    - id: corridor_log_terminal
+      name: Corridor Log Terminal
+      description: >
+        A simple terminal for ship-wide announcements. The last three entries
+        are cached locally. Entry 1: "Faction meeting, Cycle 847." Entry 2:
+        "Power allocation vote failed — no consensus." Entry 3: "Crew member
+        Torres requests mediation. Application filed."
+      item_id: log_entry_847
+  locked: false
+
+crew_commons:
+  name: "Crew Commons — Deck 8"
+  deck: 8
+  description: >
+    The only gathering space large enough for all 130 survivors. Long tables,
+    mismatched chairs, a broken entertainment screen. Right now, it's split:
+    Navigators on the left, Keepers on the right, the Listeners clustered
+    near the back, murmuring. The tension is physical, like a pressure drop.
+  exits:
+    south: crew_quarters
+    east: cabin_tanaka
+    west: cabin_okonkwo
+    north: command_deck_stairs
+  npcs: [okonkwo, tanaka, venn, torres]
+  objects:
+    - id: commons_table
+      name: Central Table
+      description: >
+        A long table strewn with maps, power charts, and printed crew rosters.
+        Someone has circled three names with red marker. You can't make out
+        all the names from here — only the word "SUSPECT" scrawled in the
+        margin.
+    - id: faction_banners
+      name: Faction Banners
+      description: >
+        Each faction has claimed a corner. The Navigators' corner has a
+        projection of star charts. The Keepers have a photo wall of cryosleepers.
+        The Listeners have painted concentric circles on the floor — their
+        symbol. The Ghosts' corner is empty. They don't do banners.
+  locked: false
+
+cabin_tanaka:
+  name: "Dr. Tanaka's Cabin — Deck 8"
+  deck: 8
+  description: >
+    A small, neat cabin. Medical textbooks and personal journals are
+    meticulously organised. A framed photo sits on the desk — Tanaka with
+    a group of colleagues, all smiling. On the back: "Kepler Station,
+    2641 — last good day before departure." Her workstation shows active
+    medical monitoring of all 130 survivors.
+  exits:
+    west: crew_quarters
+    south: crew_commons
+  npcs: [tanaka]
+  objects:
+    - id: tanaka_journal
+      name: Dr. Tanaka's Journal
+      description: >
+        A personal journal, recent entries readable. The last entry reads:
+        "The Captain's numbers are correct. I hate that they're correct.
+        But correct doesn't make it right. There must be another way.
+        There has to be." The handwriting deteriorates toward the end.
+    - id: medication_cabinet
+      name: Medication Cabinet
+      description: >
+        A locked medical cabinet. Through the glass, you can see labelled
+        containers: "SYNAPTIX — Cognitive Stabiliser." Tanaka's name is on
+        the prescription. If you could access these, they might help with
+        sanity maintenance.
+    - id: survivor_monitor
+      name: Survivor Health Monitor
+      description: >
+        Live readouts for all 130 survivors. Most are in the green. Seven
+        are in yellow — stress markers elevated. One is blinking red. The
+        name beside the red indicator: "TORRES, R."
+  locked: false
+
+cabin_okonkwo:
+  name: "Captain Okonkwo's Ready Room — Deck 8"
+  deck: 8
+  description: >
+    Compared to the rest of the ship, the Captain's quarters are almost
+    pristine. Mission briefings are pinned in precise rows. A star map
+    dominates one wall, the Meridian's last known position marked in red.
+    Navigation calculations cover the desk — meticulous, obsessive.
+  exits:
+    east: crew_quarters
+    south: crew_commons
+  npcs: [okonkwo]
+  objects:
+    - id: mission_briefings
+      name: Mission Briefings
+      description: >
+        Official mission documents. The original destination was Proxima
+        Centauri B, transit time 30 years. The FTL event was supposed to
+        cut that to 14 months. Something went wrong with the FTL calculation.
+        Or something intervened.
+    - id: captains_log
+      name: Captain's Personal Log
+      description: >
+        A sealed personal log device. Partially accessible — the lock has
+        been partially bypassed. Entry dated Cycle -4,291: "The override was
+        necessary. Vasquez doesn't know what I know. Nobody does. If this
+        works, they'll thank me in a hundred years. If it doesn't—"
+        The entry ends there.
+      item_id: captains_log_fragment
+  locked: false
+
+medical_bay:
+  name: "Medical Bay — Deck 8"
+  deck: 8
+  description: >
+    A fully equipped medical bay, partially operational. Dr. Sharma works
+    here constantly. The smell of antiseptic and recycled air. Biobeds line
+    one wall; diagnostic equipment lines the other. A quarantine section at
+    the back is sealed, its window revealing nothing but darkness.
+  exits:
+    north: crew_quarters
+  npcs: [sharma]
+  objects:
+    - id: biobeds
+      name: Biobeds
+      description: >
+        Six biobeds, three currently occupied. Survivors with stress injuries
+        or physical ailments. One has their eyes open but doesn't react when
+        you enter — staring at the ceiling.
+    - id: quarantine_window
+      name: Quarantine Section Window
+      description: >
+        The quarantine section's small porthole window. The lights inside are
+        off. You press your face to the glass. For a moment, you think you see
+        something move in the dark — then it's still. Probably just your
+        imagination. Probably.
+    - id: medical_supply_locker
+      name: Medical Supply Locker
+      description: >
+        An open supply locker. Sharma has been meticulous — everything
+        catalogued, nothing wasted. Medpatches (7 remaining), synaptix (3
+        doses), basic surgical tools. Access requires Sharma's approval.
+  locked: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 7 — THE SPINE (Command Deck)
+# ─────────────────────────────────────────────────────────────────────────────
+
+command_deck_stairs:
+  name: "Command Deck Stairs — Deck 7/8 Junction"
+  deck: 7
+  description: >
+    The stairwell between Crew Quarters and the Command Deck. Blast doors at
+    the top have been propped open — someone has wedged a hydrospanner in
+    the frame. The light beyond is brighter, more institutional.
+  exits:
+    up: command_deck
+    down: crew_quarters
+  locked: false
+
+command_deck:
+  name: "Command Deck — Deck 7"
+  deck: 7
+  description: >
+    The nerve centre of the UNS Meridian — or what's left of it. Banks of
+    consoles line a semicircular room. Many are dark. The main viewport at
+    the front shows nothing but the absolute black of intergalactic space —
+    no stars, no galaxy, nothing but void. Guard Torres keeps a quiet vigil
+    near the entrance.
+  exits:
+    south: command_deck_stairs
+    west: navigation_console
+    east: comms_array
+    north: captains_ready_room
+  npcs: [torres]
+  objects:
+    - id: main_viewport
+      name: Main Viewport
+      description: >
+        Three metres of reinforced glass looking into nothing. You have never
+        seen darkness like this — no stars, no galaxies, not a single photon
+        of ambient light from outside the ship. The Meridian is truly between
+        galaxies. The sight does something to you. It confirms the mathematics
+        of your situation in a way no data screen could.
+    - id: command_consoles
+      name: Command Consoles
+      description: >
+        Seven primary command stations, only two functioning. The active ones
+        display: ship-wide systems status (14 of 47 subsystems online) and
+        crew roster (130 of 10,000 survivors). The numbers are a kind of
+        silence.
+  locked: false
+
+navigation_console:
+  name: "Navigation Console — Deck 7"
+  deck: 7
+  description: >
+    An advanced navigation station. Star charts and trajectory calculations
+    fill the screens. The math is not encouraging. Captain Okonkwo spends
+    most of her time here.
+  exits:
+    east: command_deck
+  npcs: [okonkwo]
+  objects:
+    - id: nav_charts
+      name: Navigation Charts
+      description: >
+        The charts show the ship's position in the intergalactic void — far
+        from any star. The nearest galaxy is the Milky Way, 200,000 light-years
+        away. The nearest approachable star system: 40,000 light-years. Without
+        FTL, that's 400 years at best conventional speed. The FTL drive is
+        the only option.
+    - id: nav_log_terminal
+      name: Navigation Log Terminal
+      description: >
+        Historical navigation logs. Entry Cycle -4,291 (the FTL event) is
+        flagged but partially corrupted. A timestamp discrepancy of 4.3 hours
+        exists between CORA's record and the manual log entry. One of them
+        has been altered.
+      item_id: nav_log_fragment
+  locked: false
+
+comms_array:
+  name: "Comms Array — Deck 7"
+  deck: 7
+  description: >
+    The communications centre. The main array is damaged — components
+    scattered across the floor, burn marks on two consoles. Someone
+    deliberately damaged this. Or something did. A backup comms unit
+    flickers with partial function.
+  exits:
+    west: command_deck
+  objects:
+    - id: damaged_comms
+      name: Damaged Comms Array
+      description: >
+        The main antenna array is physically severed — the coupling that
+        connects interior systems to the hull-mounted antenna is missing.
+        It didn't fail. It was removed. The cut marks are clean, tool-made.
+    - id: backup_comms
+      name: Backup Communications Unit
+      description: >
+        A portable backup comms unit, still functioning. Range is limited —
+        maybe 50,000 km. Not enough to reach anyone. But it could pick up
+        signals from within the ship. Including from Decks 11 and 12.
+  locked: false
+
+captains_ready_room:
+  name: "Captain's Ready Room — Deck 7"
+  deck: 7
+  description: >
+    The command-level ready room, separate from Okonkwo's personal quarters
+    below. A formal space: a large desk, the mission seal on the wall. The
+    safe behind the mission seal is locked. A terminal holds classified
+    mission briefings.
+  exits:
+    south: command_deck
+  objects:
+    - id: mission_seal
+      name: Mission Seal
+      description: >
+        The UNS Meridian's official mission emblem. Behind it, you can see
+        the edge of a safe. The safe has a biometric lock — it will only open
+        with Captain Okonkwo's authorisation.
+    - id: classified_terminal
+      name: Classified Terminal
+      description: >
+        A locked terminal showing "CAPTAIN OKONKWO — EYES ONLY." With the
+        right evidence or the Captain's cooperation, this might be accessible.
+  locked: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 6 — THE HEART (Reactor Level) — Unlockable mid-Act I
+# ─────────────────────────────────────────────────────────────────────────────
+
+reactor_level:
+  name: "Reactor Level — Deck 6"
+  deck: 6
+  description: >
+    The heat hits you first. The entire deck runs several degrees warmer than
+    the rest of the ship. Heavy bulkhead doors line a central corridor — the
+    fusion reactor behind them is visible through reinforced glass: a
+    contained sun, burning at 11% of design capacity. Warning lights pulse
+    amber. Engineer Vasquez has been trying to keep this alive for 200 years.
+  exits:
+    up: command_deck
+    north: reactor_core
+    east: engineering_station
+  objects:
+    - id: reactor_viewport
+      name: Reactor Viewport
+      description: >
+        Through the reinforced glass: the fusion reaction itself, a contained
+        plasma column burning blue-white. It should be ten times brighter.
+        At 11% capacity, it looks like a dying star.
+  npcs: [vasquez]
+  locked: true
+  lock_key: reactor_access_granted
+
+reactor_core:
+  name: "Reactor Core — Deck 6"
+  deck: 6
+  description: >
+    The inner sanctum of the Meridian's power system. It is loud here —
+    a deep subsonic throb that you feel more than hear. Diagnostic panels
+    cover every surface. Three primary systems are flagged in amber: the
+    coolant loop, the neutron flux regulators, and the magnetic confinement
+    field. Only one of these is actually the primary cause of inefficiency.
+  exits:
+    south: reactor_level
+    east: engineering_station
+  objects:
+    - id: reactor_diagnostic_panel
+      name: Reactor Diagnostic Panel
+      description: >
+        Three diagnostic readouts:
+        [A] Coolant loop pressure: 2.1 MPa (CORA: nominal)
+        [B] Neutron flux variance: +8.3% (CORA: within tolerance)
+        [C] Magnetic confinement field: 94.2% (CORA: critical)
+        You recall from engineering notes that confinement below 95% should
+        trigger shutdown. The reactor is still running.
+    - id: manual_override_console
+      name: Manual Override Console
+      description: >
+        A physical override console, accessible only from here. According to
+        CORA's records, this console was last activated on Cycle -4,291. The
+        override log shows: "SHUTDOWN PROTOCOL DISABLED — AUTH: OKONKWO-A."
+      item_id: override_log
+  locked: false
+
+engineering_station:
+  name: "Engineering Station — Deck 6"
+  deck: 6
+  description: >
+    Vasquez's workspace: organised chaos. Schematics pinned everywhere,
+    hand-annotated with corrections to CORA's readings. Several shelves of
+    spare parts and a workbench covered in half-repaired components.
+  exits:
+    west: reactor_core
+    north: reactor_level
+  npcs: [vasquez]
+  objects:
+    - id: vasquez_schematics
+      name: Vasquez's Schematics
+      description: >
+        Dozens of annotated engineering diagrams. One is circled in red:
+        "CORA WRONG ABOUT CONFINEMENT — verified manually — actual field
+        strength 96.1%, not 94.2%. Real problem is COOLANT LOOP PRESSURE
+        drop. CORA doesn't see it because sensor array B-7 is offline."
+      item_id: vasquez_note
+    - id: repair_parts
+      name: Spare Parts Locker
+      description: >
+        A locker of spare components: coolant pumps, sensor arrays, magnetic
+        field emitters. Most are the right type but show heavy wear.
+  locked: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DECK 5 — THE LUNGS (Hydroponics) — Unlockable late Act I
+# ─────────────────────────────────────────────────────────────────────────────
+
+hydroponics:
+  name: "Hydroponics Bay — Deck 5"
+  deck: 5
+  description: >
+    What was once a sterile agricultural facility is now something stranger.
+    Plants have escaped their growth racks and colonised every surface.
+    Some are recognisable — wheat variants, legumes. Others are not. They
+    have adapted in the 200 years of isolation, becoming something new.
+    The air here is noticeably richer. This is the ship's best remaining
+    O₂ source — if you can manage it.
+  exits:
+    down: reactor_level
+  objects:
+    - id: overgrown_racks
+      name: Overgrown Growth Racks
+      description: >
+        The original hydroponic racks, now buried under 200 years of growth.
+        The mutant flora is not aggressive, but it has spread to the
+        ventilation shafts — potentially useful, potentially problematic.
+    - id: atmospheric_processor_a
+      name: Atmospheric Processor Unit A
+      description: >
+        The primary atmospheric processor for Deck 5. Currently running at
+        35% efficiency. Repairing it would significantly boost ship-wide O₂
+        levels. It has three subsystems: filters, compressors, and regulators.
+        Getting the configuration right is non-trivial.
+    - id: old_lab_bench
+      name: Old Lab Bench
+      description: >
+        A research bench, partially intact. Lab notes suggest the original
+        botanist was studying the mutation patterns. The last entry: "Growth
+        accelerating. Pattern suggests directed adaptation rather than random
+        mutation. Something is guiding the changes. Resonance exposure? Must
+        investigate." No further entries.
+      item_id: botanist_notes
+  locked: true
+  lock_key: hydroponics_access_granted

@@ -1,0 +1,181 @@
+# items.yaml — Item definitions for Act I
+
+medpatch:
+  name: "Medpatch"
+  description: "A standard medical adhesive patch. Reduces pain and accelerates minor healing. Single use."
+  uses: 1
+  effects:
+    sanity: 5
+    type: consumable
+
+hydrospanner:
+  name: "Hydrospanner"
+  description: "A multi-purpose engineering tool. Required for certain repair tasks."
+  uses: -1
+  effects:
+    type: tool
+
+ration_pack:
+  name: "Emergency Ration Pack"
+  description: "Three days of compressed nutrition. Better than nothing."
+  uses: 1
+  effects:
+    rations: 3
+    type: consumable
+
+torn_note:
+  name: "Torn Note"
+  description: "A partial handwritten note. Readable portion: '...cannot trust her. The logs show—' The rest is torn away."
+  uses: -1
+  effects:
+    type: clue
+    evidence: torn_note_evidence
+
+lien_paper_fragment:
+  name: "Lien's Research Notes (Fragment)"
+  description: >
+    A page from Archivist Lien's research. Documents a 4.3-hour timestamp
+    discrepancy between the CORA navigation log and the manual log for the
+    FTL event. Notes: 'One source has been altered. The manual log shows
+    the deviation was already present BEFORE CORA recorded it — meaning
+    CORA's log is the falsified one.'
+  uses: -1
+  effects:
+    type: clue
+    evidence: timestamp_discrepancy
+
+fab_schematic_fragment:
+  name: "Fabrication Schematic Fragment"
+  description: >
+    A partial wiring diagram for the Fabrication Lab door subsystems.
+    Shows that System B (compressors) must be in STANDBY to prevent
+    a power overload.
+  uses: -1
+  effects:
+    type: clue
+
+captains_log_fragment:
+  name: "Captain's Personal Log Fragment"
+  description: >
+    A partial log entry from Captain Okonkwo, Cycle -4,291: 'The override
+    was necessary. Vasquez doesn't know what I know. Nobody does. If this
+    works, they'll thank me in a hundred years. If it doesn't—' Entry ends.
+  uses: -1
+  effects:
+    type: clue
+    evidence: okonkwo_override_log
+
+nav_log_fragment:
+  name: "Navigation Log Fragment"
+  description: >
+    Navigation log excerpt from Cycle -4,291. The timestamp metadata shows
+    the file was modified 4.3 hours after the FTL event. The original
+    calculation coordinates differ from the approved mission parameters
+    by a factor of 1.3 — someone changed them.
+  uses: -1
+  effects:
+    type: clue
+    evidence: nav_log_modified
+
+override_log:
+  name: "Manual Override Log"
+  description: >
+    The physical override console log from Deck 6. Records: 'SHUTDOWN
+    PROTOCOL DISABLED — Authorization: OKONKWO-A — Cycle -4,291 — 
+    Timestamp: 03:17 ship time.' Cross-referenced with the FTL event at
+    07:33 ship time: the shutdown override happened 4 hours BEFORE the FTL
+    event.
+  uses: -1
+  effects:
+    type: clue
+    evidence: override_before_ftl
+
+vasquez_note:
+  name: "Vasquez's Engineering Note"
+  description: >
+    Handwritten note: 'CORA WRONG ABOUT CONFINEMENT — verified manually
+    — actual field strength 96.1%, not 94.2%. Real problem is COOLANT
+    LOOP PRESSURE drop. CORA doesn't see it because sensor array B-7 is
+    offline. Do NOT follow CORA's recommended fix — it will make things
+    worse.'
+  uses: -1
+  effects:
+    type: clue
+    evidence: cora_sensor_error
+
+log_entry_847:
+  name: "Ship Log Entry — Cycle 847"
+  description: >
+    Cached ship-wide log. Entry from Cycle 847: 'Faction meeting. Power
+    allocation vote failed — no consensus for the 23rd consecutive cycle.
+    Systems continue to degrade. Crew mental health declining. Medical
+    bay reports three new cases of Resonance sensitivity. Guard Torres
+    reports increasing physical altercations between factions.'
+  uses: -1
+  effects:
+    type: lore
+
+botanist_notes:
+  name: "Botanist's Research Notes"
+  description: >
+    Research notes from the original ship botanist (deceased). Last entry:
+    'Growth accelerating. Pattern suggests directed adaptation rather than
+    random mutation. Something is guiding the changes. Resonance exposure?
+    The plants respond to proximity to Deck 6 vents. They are growing
+    TOWARD the Resonance signal sources, not away.'
+  uses: -1
+  effects:
+    type: clue
+    evidence: resonance_plant_growth
+
+cipher_key_fragment_1:
+  name: "Archive Cipher Key — Fragment 1"
+  description: >
+    A data chip containing the first third of the archive cipher key.
+    Found in Archivist Lien's possession. By itself, useless.
+  uses: -1
+  effects:
+    type: key
+    cipher_fragments: 1
+
+cipher_key_fragment_2:
+  name: "Archive Cipher Key — Fragment 2"
+  description: >
+    A data chip containing the second third of the archive cipher key.
+    Extracted from the navigation console's sealed log partition.
+  uses: -1
+  effects:
+    type: key
+    cipher_fragments: 2
+
+cipher_key_fragment_3:
+  name: "Archive Cipher Key — Fragment 3"
+  description: >
+    A data chip containing the final third of the archive cipher key.
+    This is the controversial one — one of the three fragments is a
+    forgery planted to lead investigators to the wrong conclusion.
+  uses: -1
+  effects:
+    type: key
+    cipher_fragments: 3
+
+synaptix_dose:
+  name: "Synaptix Dose"
+  description: >
+    A single dose of Synaptix cognitive stabiliser. Developed for long-
+    duration space travel. Significantly reduces dissociative symptoms
+    and stabilises cognition.
+  uses: 1
+  effects:
+    sanity: 15
+    type: consumable
+
+oxygen_canister:
+  name: "Emergency O₂ Canister"
+  description: >
+    A sealed emergency oxygen canister. Can be used to temporarily boost
+    atmospheric O₂ in a sealed section, or feed directly into a recycler.
+  uses: 1
+  effects:
+    o2: 5
+    type: consumable

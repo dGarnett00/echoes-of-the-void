@@ -1,0 +1,367 @@
+# npcs.yaml — NPC definitions for Act I
+
+vasquez:
+  name: "Engineer Vasquez"
+  full_name: "Engineer Elena Vasquez"
+  faction: neutral
+  location: crew_quarters
+  relationship: 20
+  description: >
+    A compact woman in her fifties with calloused hands and a permanent look
+    of mild exasperation. She wears her engineering coveralls even when off-
+    duty. She fixes things. That's all she does. That's all she wants to do.
+  hidden_info: "vasquez_knows_cora_error"
+  dialogue:
+    default: >
+      Vasquez looks up from her work briefly. "You're the one who came out
+      of cryo. Good. We need someone fresh — everyone else has been staring
+      at these problems so long they've stopped seeing them. What do you need?"
+    trust_low: >
+      "I don't have time for this. The reactor's still eating itself and I
+      have three systems flagged for failure. Come back when you know what
+      you're asking."
+    trust_high: >
+      "I'll tell you something nobody else has put together yet. CORA's
+      sensor array B-7 has been offline for 40 cycles. She doesn't know it.
+      Her readings for the magnetic confinement field are wrong — the actual
+      problem is the coolant loop. If you go to the reactor and check the
+      manual diagnostics, you'll see it."
+    reactor_topic: >
+      "The reactor is running at 11%. What that means is: we're surviving.
+      What it doesn't mean is: we're okay. I've been nursing this thing for
+      decades. It's stable — barely. Don't let anyone tell you it's fine."
+    cora_topic: >
+      "CORA is... functional. Mostly. She has blind spots. Some of them are
+      sensor failures. Some of them—" She pauses. "Some of them worry me more.
+      I've been logging discrepancies for years. Nobody listened."
+    faction_topic: >
+      "I'm not in any faction. I just keep the ship running. Okonkwo wants
+      engine power. Tanaka wants cryo power. Venn wants to open the lower
+      decks, which would kill us all. Razor's people just want to survive.
+      Nobody's wrong and nobody's right and I'm tired of it."
+  knowledge:
+    - reactor_state
+    - cora_errors
+    - power_allocation
+    - engineering_history
+
+okonkwo:
+  name: "Captain Okonkwo"
+  full_name: "Captain Adaeze Okonkwo"
+  faction: navigators
+  location: crew_commons
+  relationship: 0
+  description: >
+    Tall, precise, with close-cropped grey hair and eyes that calculate
+    everything they land on. She commands a room the way she commands the
+    ship — through sheer force of logical certainty. She is right, and she
+    knows it. The tragedy is that she might be.
+  hidden_info: "okonkwo_ftl_secret"
+  dialogue:
+    default: >
+      "Ah. The newcomer." Okonkwo doesn't stand. She measures you from
+      her chair. "You're awake at a critical moment. I won't tell you
+      we're glad to have you — I'll tell you we need you to be useful.
+      Are you going to be useful?"
+    trust_low: >
+      "I don't have the bandwidth for sentiment. Ask me a specific question
+      about ship operations and I'll answer it. Otherwise — don't waste
+      my time."
+    trust_high: >
+      "You want the truth? Fine. The FTL failure wasn't a malfunction. I
+      authorised an experimental calculation that the mission parameters
+      prohibited. I was trying to cut transit time further. I miscalculated
+      or — the Resonance interfered. I don't know which. That's what I
+      can't live with. I'm certain I was right and I can't prove it."
+    ftl_topic: >
+      "The FTL event was an anomaly. The drive engaged at the correct
+      coordinates, the calculation was within parameters, and then—
+      something happened. CORA's logs from that moment are inconsistent.
+      I have my theories, but theories don't move the ship."
+    faction_topic: >
+      "The Navigators understand one thing the others don't: mathematics
+      doesn't care about your feelings. We have the fuel and the drive —
+      potentially — to reach the nearest star system. But only if we
+      make choices the Keepers refuse to accept. I prefer to survive
+      than to be morally comfortable in the void."
+    tanaka_topic: >
+      "Yuki is brilliant and I respect her. But she wants to protect
+      everyone, and you can't protect everyone. Someone has to make
+      the decision she won't. That's what captains are for."
+  knowledge:
+    - ftl_failure
+    - power_allocation
+    - navigation_plan
+    - override_authorization
+
+tanaka:
+  name: "Dr. Tanaka"
+  full_name: "Dr. Yuki Tanaka"
+  faction: keepers
+  location: crew_commons
+  relationship: 10
+  description: >
+    A small woman who moves with quiet efficiency and speaks with the
+    measured care of someone who has learned that words have weight. Her
+    warmth is genuine — and so is her stubbornness. She has the focused
+    intensity of someone who has decided what they're fighting for and
+    will not be moved.
+  hidden_info: "tanaka_knows_cryo_crisis"
+  dialogue:
+    default: >
+      "You're awake." She smiles — genuinely, not performatively. "I checked
+      your pod vitals every cycle for the past week. Your cognitive recovery
+      is faster than expected. That's good. We need clear thinkers." A beat.
+      "How are you feeling? Actually feeling, not 'fine' — how are you?"
+    trust_low: >
+      "I'm sorry — I want to help you, I really do. But I've had too many
+      people tell me they want to understand and then walk away when the
+      answers are inconvenient. Show me you're different."
+    trust_high: >
+      "There are 4,000 people in those pods. Not statistics — people. I
+      have their intake files. I know their names. The Captain's math says
+      some of them are acceptable losses. I can't accept that. If that makes
+      me naive — fine. There has to be another way, and I believe you can
+      help find it."
+    cryo_topic: >
+      "We have 3,847 active pods. Forty-six have gone dark. I believe —
+      and CORA cannot confirm or deny this — that the power conduit through
+      Deck 9 is the common failure point. If we can repair that conduit,
+      we might prevent further losses. And if we can get Deck 5 online,
+      the O₂ situation improves dramatically."
+    okonkwo_topic: >
+      "The Captain is doing what she thinks is right. I genuinely believe
+      that. But 'right' for her means 'the maximum number who survive the
+      whole journey.' For me, right means not choosing who lives and who
+      doesn't. We disagree, and I don't think either of us is entirely wrong."
+    medication_topic: >
+      "I have synaptix in the medical cabinet. Cognitive stabiliser —
+      it helps with the dissociative effects of long-term cryo recovery
+      and... other stressors. I can give you one dose. Come to the medical
+      bay if you need it."
+  knowledge:
+    - cryo_bay_status
+    - survivor_health
+    - power_needs_cryo
+    - medication_supply
+
+venn:
+  name: "Silas Venn"
+  full_name: "Silas Venn"
+  faction: listeners
+  location: crew_commons
+  relationship: -10
+  description: >
+    A lean man with the calm, steady gaze of someone who has made his peace
+    with the universe. He's unsettling in the way that certainty is
+    unsettling — not because he's unstable, but because he might be right.
+    He leads the Listeners through presence rather than authority.
+  hidden_info: "venn_resonance_knowledge"
+  dialogue:
+    default: >
+      "You felt it when you woke, didn't you." Not a question. "The void
+      outside the ship — it's not empty. You know that now. Everyone who
+      comes out of cryo knows it, but they usually talk themselves out of it
+      in a few cycles." He watches you steadily. "Take your time. But don't
+      take too long."
+    trust_low: >
+      "The others think I'm deluded. Maybe they're right. But if you're
+      curious — really curious, not just checking what the eccentric faction
+      believes — come talk to me when you're ready."
+    trust_high: >
+      "The Resonance communicated with me on Cycle 310. Not in words — in
+      patterns. Probabilities shifted around certain decisions. I started
+      documenting it. The pattern is consistent: it responds to attention.
+      When we notice it, it notices us back. The sealed decks — Eleven and
+      Twelve — something in there has been in contact with it for longer
+      than any of us. I need to know what it learned."
+    resonance_topic: >
+      "The Resonance is not evil. It's not good. It's — immense. Ancient.
+      It exists in a state that has no human analogue. What I believe is
+      that it is curious about us, the way we might be curious about a
+      beetle in a jar. We need to demonstrate we're worth more than
+      casual observation."
+    sealed_decks_topic: >
+      "The seals on Eleven and Twelve were placed by the original crew
+      leadership. Not because of structural failure. The logs — the ones
+      Lien hasn't cracked yet — will tell you why. Someone in the original
+      crew went to Deck Eleven and came back changed. Then they went back
+      alone."
+  knowledge:
+    - resonance_nature
+    - sealed_decks_history
+    - listener_beliefs
+
+razor:
+  name: "Razor"
+  full_name: "Subject: UNKNOWN — designation 'Razor'"
+  faction: ghosts
+  location: cargo_main
+  relationship: -20
+  description: >
+    You don't get a name the first time you meet. You get a look —
+    flat, measuring, calculating. Razor is neither large nor small, neither
+    young nor old. They are the sort of person who occupies exactly as much
+    space as they need to and no more. The two followers behind them maintain
+    a similar stillness.
+  hidden_info: "razor_has_supplies"
+  dialogue:
+    default: >
+      "Fresh out of cryo." Not a greeting — an observation. "You don't know
+      what this place is yet. You will." A pause. "Don't touch our supplies.
+      Don't ask questions you're not ready to hear the answers to. We'll
+      see if you're worth knowing."
+    trust_low: >
+      "Not yet." Just that.
+    trust_high: >
+      "I've been awake for eighteen years. Not continuously — but long
+      enough to have seen what this ship does to people. The factions? 
+      They're not wrong about the problems. They're wrong about the
+      solutions. You want to know who sabotaged the systems? Check who
+      benefits when the factions can't agree."
+    supplies_topic: >
+      "We have six months of independent rations. Three months of O₂ cells.
+      I'm not sharing without something in return. That's not cruelty —
+      that's the math of survival."
+    sabotage_topic: >
+      "Don't look at me. We benefit most when everyone else has what they
+      need. Chaos is bad for scavengers. Someone with a reason to prevent
+      agreement — that's your saboteur."
+  knowledge:
+    - ghost_supplies
+    - long_term_survival
+    - saboteur_hint
+
+sharma:
+  name: "Medic Sharma"
+  full_name: "Medic Priya Sharma"
+  faction: keepers
+  location: medical_bay
+  relationship: 15
+  description: >
+    Young — early thirties — with the particular exhaustion of someone who
+    has been responsible for too many people for too long. She is competent,
+    direct, and carries a quiet grief that she doesn't talk about.
+  hidden_info: "sharma_quarantine_secret"
+  dialogue:
+    default: >
+      "You're coherent — that's good. Cryo recovery varies a lot. I'm
+      going to ask you a few quick questions: Do you know where you are?
+      Do you know approximately what year it is? Do you remember your
+      name?" She waits, ready to take notes.
+    trust_low: >
+      "I can treat physical injuries. For everything else — I'm not a
+      counsellor. Though I probably should be, given the circumstances."
+    trust_high: >
+      "The quarantine section. You noticed it, didn't you." She hesitates.
+      "Three months ago, Torres brought in a crew member from Deck 9.
+      Resonance exposure — severe. We don't understand it. The person
+      recovered physically but something is... different. I have them
+      isolated until I understand what I'm dealing with. I haven't told
+      Okonkwo yet."
+    health_topic: >
+      "Physically, the 130 survivors are mostly stable. The real concern
+      is mental health — 200 years of this. The survivors who've been
+      awake longest are showing the worst signs. Isolation, dissociation,
+      some cases of what I can only describe as Resonance sensitivity.
+      It affects cognition in unusual ways."
+    medication_topic: >
+      "Synaptix helps. It's a cognitive stabiliser — developed specifically
+      for long-duration space travel. We have limited supply. I can provide
+      one dose if your symptoms warrant it. Don't abuse it."
+  knowledge:
+    - quarantine_patient
+    - survivor_mental_health
+    - resonance_symptoms
+
+torres:
+  name: "Guard Torres"
+  full_name: "Guard Rodrigo Torres"
+  faction: neutral
+  location: command_deck
+  relationship: 5
+  description: >
+    A big man, gone quieter than he probably used to be. He wears the
+    remnants of a ship's security uniform — the rank insignia removed,
+    the badge turned face-down. He keeps order between the factions,
+    though you sense he's doing it more out of habit than conviction.
+  hidden_info: "torres_losing_faith"
+  dialogue:
+    default: >
+      "Just woke up, huh." He looks you over with the professional
+      assessment of someone trained to evaluate threats. "You're not a
+      threat. That's good. We have enough of those." He doesn't specify
+      what kind of threat he means.
+    trust_low: >
+      "I don't talk much these days. Used to. Keep your eyes open and
+      your hands visible and we'll get along fine."
+    trust_high: >
+      "I've been awake for eleven years. I've watched this crew hold
+      together and fall apart and hold together again, over and over.
+      What I believe now — and it took me long time to get here —
+      is that someone in the original command crew knew what was going
+      to happen. They just... let it."
+    peace_keeping_topic: >
+      "I step in when it gets physical. The factions argue constantly
+      but they mostly stop short of violence. When it gets close, I
+      put myself in the middle. It works about 80% of the time."
+    sabotage_topic: >
+      "I've been watching. The sabotage events happened at times when
+      all three faction leaders had an alibi. Which either means it's
+      a fourth party — or the alibis are wrong. Or were arranged."
+  knowledge:
+    - faction_tensions
+    - security_history
+    - sabotage_timeline
+
+lien:
+  name: "Archivist Lien"
+  full_name: "Archivist Mei Lien"
+  faction: neutral
+  location: archive_terminal
+  relationship: 10
+  description: >
+    A meticulous woman who speaks very precisely, choosing each word
+    carefully. She has spent years cataloguing the ship's archives —
+    a project that began as scholarship and has become an obsession.
+    She knows where every contradiction is. She's not sure what to do
+    with that knowledge.
+  hidden_info: "lien_knows_ftl_truth"
+  dialogue:
+    default: >
+      "Ah — I wondered when someone would come speak with me. I've
+      been finding things. Important things. But it's all fragments.
+      I need — I need someone to help me put them together."
+    trust_low: >
+      "The archives are not casual reading material. They require
+      context. Come back when you have some."
+    trust_high: >
+      "I've found three major inconsistencies that all point the same
+      direction: the FTL failure was not accidental. The timestamp in
+      the navigation log was altered — someone changed 4.3 hours of
+      records. The original calculation was not within mission parameters.
+      And the person who authorised the override — I found their
+      personal archive. Sealed, but not as well as they thought."
+    archive_topic: >
+      "The archives contain the complete history of the Meridian's
+      voyage — including the original mission briefing. There are
+      sections I can't access without the cipher key fragments.
+      I know where two fragments are. The third is... somewhere
+      I don't want to go alone."
+    cipher_topic: >
+      "The cipher uses a tri-split key. Each fragment is useless alone.
+      Fragment one: I have it here — in my notes. Fragment two: it's
+      in a sealed log on the navigation console — Fragment three is
+      in the Captain's classified terminal. Getting all three is the
+      challenge."
+    ftl_topic: >
+      "The FTL drive was designed for precise coordinates. What the
+      original logs suggest — the uncorrupted ones — is that the
+      calculation was modified after the navigation committee approved
+      it. Someone with override authority changed the destination.
+      Or changed the parameters. The result brought us here."
+  knowledge:
+    - archive_contents
+    - cipher_key_locations
+    - ftl_inconsistencies
+    - log_authentication

@@ -1,0 +1,145 @@
+# puzzles.yaml — Puzzle definitions for Act I
+
+atmospheric_processor:
+  id: atmospheric_processor
+  name: "Atmospheric Processor Repair"
+  location: hydroponics
+  type: logic
+  difficulty: medium
+  description: >
+    The atmospheric processor has three subsystems: filters (A), compressors (B),
+    and regulators (C). Each can be in one of three states: ACTIVE, STANDBY,
+    or OFFLINE. Only one combination will restore the processor without
+    triggering a power overload.
+  states:
+    filters: [ACTIVE, STANDBY, OFFLINE]
+    compressors: [ACTIVE, STANDBY, OFFLINE]
+    regulators: [ACTIVE, STANDBY, OFFLINE]
+  correct_solution:
+    filters: ACTIVE
+    compressors: STANDBY
+    regulators: ACTIVE
+  cora_wrong_solution:
+    filters: ACTIVE
+    compressors: ACTIVE
+    regulators: STANDBY
+  cora_note: >
+    CORA's suggestion (filters ACTIVE, compressors ACTIVE, regulators STANDBY)
+    would cause a power overload due to her miscalculation of compressor draw.
+  environmental_clues:
+    - "A maintenance note on the wall: 'Do NOT set all to ACTIVE — power overload risk. -Vasquez'"
+    - "Burn marks on the compressor panel suggest a previous overload attempt."
+    - "The schematic fragment shows compressors in STANDBY in the 'safe' diagram."
+    - "The regulator status light is currently OFFLINE but shows physical integrity."
+  reward:
+    o2: 10
+    sanity: 5
+    event: atmospheric_processor_repaired
+
+archive_decryption:
+  id: archive_decryption
+  name: "Archive Decryption"
+  location: archive_terminal
+  type: cipher
+  difficulty: hard
+  description: >
+    The archive cipher requires three key fragments. One fragment is a forgery.
+    The player must identify the fake by cross-referencing log metadata:
+    author names, date formats, and content consistency.
+  real_fragments: [cipher_key_fragment_1, cipher_key_fragment_2]
+  fake_fragment: log_cipher_fake
+  detection_clues:
+    - "Archivist 'Chen Wei' appears in no crew manifest."
+    - "The date format on the fake fragment uses Earth calendar — ship logs use cycle numbers."
+    - "Fragment 3 references 'fragment one only' — the real cipher requires all three in sequence."
+    - "Lien confirms she never worked with anyone named Chen Wei."
+  reward:
+    event: archive_decrypted
+    unlocks: [ftl_truth_revealed, full_mission_briefing]
+
+reactor_diagnostic:
+  id: reactor_diagnostic
+  name: "Reactor Diagnostic"
+  location: reactor_core
+  type: bayesian
+  difficulty: hard
+  description: >
+    CORA reports three possible causes for reactor inefficiency:
+    A) Magnetic confinement field degradation
+    B) Neutron flux irregularity
+    C) Coolant loop pressure drop
+    Each test costs 2 power and 1 cycle. CORA's initial diagnosis (A) is wrong.
+  tests:
+    test_a:
+      name: "Confinement Field Test"
+      cost_power: 2
+      cost_cycles: 1
+      result: "Field strength verified at 96.1% — within spec. CORA's reading of 94.2% was from offline sensor B-7."
+      eliminates: A
+    test_b:
+      name: "Neutron Flux Test"
+      cost_power: 2
+      cost_cycles: 1
+      result: "Flux variance at 8.3% — elevated but within tolerance. Not the primary cause."
+      eliminates: B
+    test_c:
+      name: "Coolant Loop Pressure Test"
+      cost_power: 2
+      cost_cycles: 1
+      result: "Coolant loop pressure: 1.4 MPa — SIGNIFICANTLY below nominal 3.0 MPa. Primary cause identified."
+      eliminates: null
+      confirms: C
+  cora_recommendation: A
+  correct_answer: C
+  reward:
+    power: 15
+    event: reactor_optimized
+
+saboteur_investigation:
+  id: saboteur_investigation
+  name: "The Saboteur Investigation"
+  location: crew_commons
+  type: deduction
+  difficulty: hard
+  description: >
+    Someone has been sabotaging critical systems. Three suspects. Evidence
+    is scattered across rooms and NPC conversations. Some evidence is
+    contradictory. The player must THEORIZE and then CONFRONT a suspect.
+  saboteur: venn
+  suspects:
+    vasquez:
+      motive: "Could want to force a reactor shutdown to prevent Okonkwo's navigation plan"
+      opportunity: "Has access to all engineering systems"
+      alibi: "Was in engineering station during each sabotage event — multiple witnesses"
+      alibi_strength: strong
+    okonkwo:
+      motive: "Could be staging crises to force faction compliance"
+      opportunity: "Has master override access"
+      alibi: "Navigation console logs show continuous activity during sabotage events"
+      alibi_strength: medium
+    venn:
+      motive: "Wants to force exploration of sealed decks — system failures create pressure to try alternatives"
+      opportunity: "Listeners have been observed near damaged systems"
+      alibi: "Claims to have been in meditation with followers — uncorroborated"
+      alibi_strength: weak
+  evidence_items:
+    - id: listener_tool_marks
+      description: "Tool marks near the sabotaged atmospheric processor match a tool type used by Listeners for their ritual marking."
+      points_to: venn
+    - id: vasquez_alibi_confirmed
+      description: "Three independent witnesses confirm Vasquez's presence in engineering during Sabotage Event 2."
+      exonerates: vasquez
+    - id: okonkwo_log_access
+      description: "Navigation console logs are tamper-resistant — would require Vasquez-level access to fake."
+      exonerates_partially: okonkwo
+    - id: venn_motive_confirmed
+      description: "Torres witnessed Venn arguing that 'the factions will only cooperate when they have no choice.'"
+      points_to: venn
+    - id: listener_proximity
+      description: "Three Listener faction members were seen near Deck 9 infrastructure the night before Sabotage Event 1."
+      points_to: venn
+  contradictory_evidence:
+    - description: "An anonymous note claims 'The Navigator did it.' — Could be misdirection."
+  reward:
+    event: saboteur_confronted
+    trust: 15
