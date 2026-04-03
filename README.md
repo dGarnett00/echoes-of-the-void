@@ -165,6 +165,8 @@ Evidence converges on saboteur, archive decryption reveals the FTL failure was d
 
 ## Installation & Setup
 
+For a quick, step-by-step run walkthrough (especially on Windows), see [RUNNING_THE_GAME.md](RUNNING_THE_GAME.md).
+
 ```bash
 # Clone the repository
 git clone https://github.com/dGarnett00/echoes-of-the-void.git
